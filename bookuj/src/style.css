@@ -1,33 +1,79 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
-  background-color: #272525;
+  background-image: url("./assets/stet.jpeg");
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
 }
-
-h1,
-p {
+.wrapper {
+  display: grid;
+  grid-template-rows: min-content min-content 1fr min-content;
+  height: calc(100vh - 1rem);
+  padding: 0.5rem;
+}
+header {
+  float: middle;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 1rem;
+  background-color: white;
+  opacity: 0.8;
+  color: black;
+}
+nav a + a {
+  margin-left: 1rem;
+}
+nav {
+  float: middle;
+  background-color: white;
+  padding: 1rem;
+  opacity: 0.8;
+}
+main {
+  background-color: white;
+  padding: 1rem;
+  opacity: 0.8;
+}
+footer {
+  color: black;
+  font-weight: bold;
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  opacity: 0.8;
+}
+button {
+  background-color: #8890c2;
   color: white;
+  text-align: center;
+  padding: 4px 12px;
+  border: none;
+  border-radius: 6px;
+  border: 1px solid #7c86c2;
+  float: right;
+  margin-left: 2px;
 }
-
-.accordion-button:not(.collapsed) {
-  background-color: #272525;
-}
-
 .card {
+  color: aliceblue;
   box-sizing: border-box;
   position: absolute;
-  background: #494b58;
+  background: #001ee3;
   mix-blend-mode: normal;
   box-shadow: 0px 4px 4px #1e1e1e;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
+  width: 50%;
+}
+.grid-item {
+  text-align: center;
+}
+.item-1 {
+  background-color: #dcdff3;
+  border-radius: 5px;
+  color: black;
+}
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 200px);
+  gap: 30px;
 }
