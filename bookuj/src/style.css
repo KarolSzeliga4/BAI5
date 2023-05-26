@@ -93,28 +93,106 @@ button {
     flex-direction: column;
     align-items: flex-start;
     flex-grow: 1;
-    margin-top: 10vh;
+    margin-top: 1vh;
 }
 
 .image-container {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding-top: 10%;
+    /* color: rgb(228, 229, 230); */
 }
 
 .price-image {
     width: 30%;
+    top: 150px;
     height: auto;
     margin: auto;
 }
 
-.h1-pricing {
-    padding-left: 9.5vw !important;
-    color: #8890c2;
+.round-image4 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 181px;
+    height: 177px;
+    left: 10%;
+    top: 145px;
+    border-radius: 50%;
 }
 
+.round-image5 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 181px;
+    height: 177px;
+    left: 43%;
+    top: 145px;
+    border-radius: 50%;
+}
 
-/* Responsive styles */
+.round-image6 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 181px;
+    height: 177px;
+    left: 75%;
+    top: 145px;
+    border-radius: 50%;
+}
+
+.h1-views {
+    padding-left: 9.5vw !important;
+    color: hsl(232, 26%, 72%);
+}
+
+.grid-wrapper2 {
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 100%);
+    color: #dcdff3;
+    gap: 30px;
+    top: 145px;
+    bottom: 90px;
+}
+
+.grid-wrapper1 {
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 100%);
+    color: #dcdff3;
+    gap: 30px;
+    top: 100px;
+    bottom: 90px;
+}
+
+.lekarze {
+    text-align: center;
+    font-size: 10px;
+}
+
+.drClooney {
+    background-color: #dcdff3;
+    border-radius: 5px;
+    color: black;
+    font-size: 12px;
+}
+
+.drZosia {
+    background-color: #dcdff3;
+    border-radius: 5px;
+    color: black;
+    font-size: 12px;
+}
+
+.drHandsome {
+    background-color: #dcdff3;
+    border-radius: 5px;
+    color: black;
+    font-size: 12px;
+}
 
 @media (max-width: 768px) {
     .wrapper {
@@ -148,7 +226,7 @@ button {
     .price-image {
         width: 80%;
     }
-    .h1-pricing {
+    .h1-views {
         padding-left: 2vw !important;
     }
 }
