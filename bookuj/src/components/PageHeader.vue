@@ -1,6 +1,6 @@
 <template>
     <div class="h-full">
-        <header>
+        <header class="main-header">
             <router-link to="/Home">Centrum Medyczne Kraków</router-link>
         </header>
     </div>
