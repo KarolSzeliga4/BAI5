@@ -70,7 +70,7 @@ const login = (app, connection) => {
               console.log(results[0]);
               response.status(200).json({
                 token: token,
-                message: "Zalogowano!",
+                message: "Zalogowano✌",
                 user: {
                   id: results[0].ID,
                   login: results[0].login,

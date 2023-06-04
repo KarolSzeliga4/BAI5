@@ -3,6 +3,7 @@ const availableHours = require("./bookingHours.json");
 const getAvailableHoursForDate = (app, connection) => {
   app.post("/booking/availableHours", async function (request, response) {
     const dateString = request.body.date;
+    const doctorId = request.body.doctorId;
 
     if (dateString) {
       let date;
@@ -16,8 +17,8 @@ const getAvailableHoursForDate = (app, connection) => {
       const startDate = `${selectedDate} 00:00:00.00`;
       const endDate = `${selectedDate} 23:59:59.999`;
       connection.query(
-        "SELECT * FROM `reservation` WHERE time BETWEEN ? AND ?",
-        [startDate, endDate],
+        "SELECT * FROM `reservation` WHERE (time BETWEEN ? AND ?) AND `doctorID` = ?",
+        [startDate, endDate, doctorId],
         function (error, results) {
           if (error) throw error;
           else {
@@ -49,6 +50,8 @@ const bookReservation = (app, connection) => {
     const dateString = request.body.date;
     const hour = request.body.hour;
     const userId = request.body.userId;
+    const purpose = request.body.purpose;
+    const doctorId = request.body.doctorId;
 
     if (dateString) {
       let date;
@@ -62,7 +65,7 @@ const bookReservation = (app, connection) => {
 
       connection.query(
         "INSERT INTO `reservation` (`ID`, `time`, `patientID`, `doctorID`, `purpose`, `addInfo`) VALUES (NULL, ?, ?, ?, ?, ?)",
-        [selectedDate, userId, 1, `purpose`, `description`],
+        [selectedDate, userId, doctorId, purpose, `description`],
         function (error, results, fields) {
           if (error) throw error;
           else {
