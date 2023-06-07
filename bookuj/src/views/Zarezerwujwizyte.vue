@@ -1,6 +1,6 @@
 <template>
   <h1>Zarezerwuj wizytę</h1>
-  <h6 v-if="!userState.accessToken.length">Oh nie, nie jesteś zalogowany 😢</h6>
+  <h6 v-if="!userState.accessToken.length" class="centered-text">Oh nie, nie jesteś zalogowany 😢</h6>
   <div v-else>
     <h6>Zalogowany jako: {{ userState.user.login }}</h6>
     <div id="purposeChoice">

@@ -11,7 +11,7 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/Home",
+      path: "/",
       name: "Home",
       component: () => import("./views/Home.vue"),
     },
