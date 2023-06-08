@@ -2,11 +2,23 @@
   <h1>Zarezerwuj wizytę</h1>
   <h6 v-if="!userState.accessToken.length">Oh nie, nie jesteś zalogowany 😢</h6>
   <div v-else>
-    <h6>Zalogowany jako: {{ userState.user.login }}</h6>
     <div id="purposeChoice">
-      <h3>Wybierz usługę:</h3>
-      <div class="container">
-        <h6>Dr Zbigniew Burski </h6>
+      <h3>Wybierz lekarza i usługę:</h3>
+      <div class="doctors-container">
+        <div 
+          class="doctor-element"
+          :class="{ active: data.doctorId === doctorsId['Dr Zbigniew Burski'] }"
+          v-on:click="() => doctorClick(doctorsId['Dr Zbigniew Burski'])">Dr Zbigniew Burski</div>
+        <div 
+          class="doctor-element"
+          :class="{ active: data.doctorId === doctorsId['Dr Zosia Burska'] }"
+          v-on:click="() => doctorClick(doctorsId['Dr Zosia Burska'])">Dr Zosia Burska</div>
+        <div 
+          class="doctor-element"
+          :class="{ active: data.doctorId === doctorsId['Dr Mirosław Halux'] }"
+          v-on:click="() => doctorClick(doctorsId['Dr Mirosław Halux'])">Dr Mirosław Halux</div>
+      </div>
+      <div id="1" class="purpose-container">
         <div
           class="purpose-element"
           v-for="purpose in visitPurposes['1']"
@@ -15,8 +27,7 @@
           {{ purpose }}
         </div>
       </div>
-      <div class="container">
-        <h6>Dr Zosia Burska </h6>
+      <div id="2" class="purpose-container">
         <div
           class="purpose-element"
           v-for="purpose in visitPurposes['2']"
@@ -25,8 +36,7 @@
           {{ purpose }}
         </div>
       </div>
-      <div class="container">
-        <h6>Dr Mirosław Halux </h6>
+      <div id="3" class="purpose-container">
         <div
           class="purpose-element"
           v-for="purpose in visitPurposes['3']"
@@ -44,9 +54,18 @@
       </button>
     </div>
     <div id="dateChoice" class="second-part">
-      <h3>Wybierz termin:</h3>
-      <h4>Wybrana usługa: {{ data.purpose }}</h4>
-      <h4>Lekarz nr.: {{ data.doctorId }}</h4>
+      <h3>Wybierz termin</h3>
+      <div class="doctor-perpose-result-container">
+        <h4>Wybrany lekarz i cel wizyty:</h4>
+        <div 
+          class="doctor-element" style="background-color: #14dfce;">
+          {{ doctorsNames[data.doctorId]}}
+        </div>
+        <div 
+          class="purpose-element" style="background-color: #14dfce;">
+          {{ data.purpose }}
+        </div>
+      </div>
       <div class="container">
         <Calendar
           ref="calendar"
@@ -55,6 +74,9 @@
           v-on:dayclick="dayClick">
         </Calendar>
         <div>
+          <div class="day-container">
+            <h5>Dnia [{{data.selectedDate.toString().substring(0, 15)}}] dostępne są następujące terminy:</h5>
+          </div>
           <div class="hours-container">
             <div
               class="hour-element"
@@ -102,7 +124,7 @@ const data = reactive({
   selectedDate: new Date(2023, 4, 8),
   selectedHour: 0,
   purpose: "purpose",
-  doctorId: 1,
+  doctorId: 0,
   hours: [],
   blocked: true,
 });
@@ -111,6 +133,17 @@ const visitPurposes = {
     "1": ["Bóle w klatce piersiowej", "Nadciśnienie Niewydolność", "Opieka po zawale", "Ocena ryzyka przed operacjami", "Diagnostyka"],
     "2": ["Poradnia chorób wewnętrznych", "Diagnostyka stanu zdrowia", "Ocena stanu zdrowia", "Skierowanie do lekarza specjalisty"],
     "3": ["Bóle chrząstno Stawowe", "Kwalifikacje do zabiegów", "Blokada/punkcja/nakłucie", "Diagnostyka"]
+};
+const doctorsNames = {
+    1: "Dr Zbigniew Burski",
+    2: "Dr Zosia Burska",
+    3: "Dr Mirosław Halux"
+};
+
+const doctorsId = {
+    "Dr Zbigniew Burski": 1,
+    "Dr Zosia Burska": 2,
+    "Dr Mirosław Halux": 3
 };
 
 onMounted(() => {
@@ -154,6 +187,15 @@ const confirmPurposeClick = () => {
   document.getElementById('purposeChoice').style.display = "none";
 };
 
+const doctorClick = (id) => {
+  if(data.doctorId != 0){
+  document.getElementById(data.doctorId).style.display = "none";
+  }
+  data.doctorId = id;
+  document.getElementById(data.doctorId).style.display = "flex";
+  data.purpose = "purpose";
+};
+
 const book = async () => {
   const response = await makePostRequest(`booking/make`, {
     date: data.selectedDate.toString(),
@@ -165,22 +207,46 @@ const book = async () => {
 
   let booking = {
     time: data.selectedDate.toString() + data.selectedHour,
-    name: "doctor",
-    purpose: "purpose",
-    addInfo: "description",
+    name: doctorsNames[doctorId], 
+    purpose: data.purpose,
+    addInfo: "no description",
   };
 
   console.log(userState.user.bookings.data.push(booking));
 
-  getHours(data.selectedDate.toString(), data.doctorId);
+  getHours(data.selectedDate.toString(), doctorId);
 };
 </script>
 
 <style>
+
 .container {
   display: flex;
   flex-direction: row;
   max-width: unset;
+}
+
+.doctors-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  min-height: 50px;
+  padding: 20px;
+}
+
+.purpose-container{
+  display: none;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 20px;
+  min-height: 50px;
+  padding: 20px;
+}
+
+.day-container{
+  display: flex;
+  justify-content: left;
+  padding: 10px 30px;
 }
 
 .second-part {
@@ -216,14 +282,15 @@ const book = async () => {
 }
 
 .hour-element.active {
-  background-color: #3cb371;
+  background-color: #14dfce;
   font-weight: bolder;
 }
 
 .purpose-element {
   background-color: #c8e6f1;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 15px;
+  padding: 5px 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -232,13 +299,45 @@ const book = async () => {
 }
 
 .purpose-element:hover {
-  background-color: #3c91b3;
+  background-color: #e2f2f8;
   cursor: pointer;
 }
 
 .purpose-element.active {
-  background-color: #3cb371;
+  background-color: #14dfce;
   font-weight: bolder;
+}
+
+
+.doctor-element {
+  font-size: 20px;
+  background-color: #b2bec2;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.doctor-element:hover {
+  background-color: #d2e1e6;
+  cursor: pointer;
+}
+
+.doctor-element.active {
+  background-color: #14dfce;
+  font-weight: bolder;
+}
+
+.doctor-perpose-result-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  min-height: 50px;
+  padding: 30px;
 }
 
 </style>

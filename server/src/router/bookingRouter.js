@@ -63,6 +63,8 @@ const bookReservation = (app, connection) => {
       }
       const selectedDate = `${getFormatedDate(date)} ${hour}:00:00.00`;
 
+      console.log(doctorId, " nr. doc", purpose, " <-p");
+
       connection.query(
         "INSERT INTO `reservation` (`ID`, `time`, `patientID`, `doctorID`, `purpose`, `addInfo`) VALUES (NULL, ?, ?, ?, ?, ?)",
         [selectedDate, userId, doctorId, purpose, `description`],

@@ -4,6 +4,7 @@ import Kontakt from "./views/Kontakt.vue";
 import Nasilekarze from "./views/Nasilekarze.vue";
 import Zakresuslug from "./views/Zakresuslug.vue";
 import Zalogujsie from "./views/Zalogujsie.vue";
+import Bookingi from "./views/Bookingi.vue";
 import Zarezerwujwizyte from "./views/Zarezerwujwizyte.vue";
 import Home from "./views/Home.vue";
 
@@ -44,6 +45,11 @@ export default createRouter({
       path: "/Zalogujsie",
       name: "Zalogujsie",
       component: () => import("./views/Zalogujsie.vue"),
+    },
+    {
+      path: "/Bookingi",
+      name: "Bookingi",
+      component: () => import("./views/Bookingi.vue"),
     },
     {
       path: "/Zarezerwujwizyte",
