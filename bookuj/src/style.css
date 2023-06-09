@@ -44,11 +44,11 @@ main {
 }
 
 footer {
-  color: black;
-  font-weight: bold;
+  color: #2e3250;
   padding: 1rem;
   text-align: center;
   opacity: 0.8;
+  font-size: 20px;
 }
 
 button {
@@ -105,6 +105,14 @@ button {
   flex-direction: row;
   align-items: center;
   padding-top: 5%;
+  /* color: rgb(228, 229, 230); */
+}
+
+.image-container2 {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding-top: 95%;
   /* color: rgb(228, 229, 230); */
 }
 
@@ -214,6 +222,33 @@ button {
   font-size: 15px;
 }
 
+.strona {
+  text-align: center;
+  font-size: 10px;
+}
+
+.startowa1 {
+  background-color: #f1f2f9;
+  border-radius: 5px;
+  color: black;
+  font-size: 12px;
+  padding: 15px;
+}
+
+.startowa2 {
+  background-color: #f1f2f9;
+  border-radius: 5px;
+  color: black;
+  font-size: 12px;
+  padding: 15px;
+}
+.startowa3 {
+  background-color: #f1f2f9;
+  border-radius: 5px;
+  color: black;
+  font-size: 12px;
+  padding: 15px;
+}
 .drClooney {
   background-color: #dcdff3;
   border-radius: 5px;
@@ -307,3 +342,17 @@ padding-left: 210px;
   text-align: center;
   font-size: 50px;
 }
+
+.h1home {
+  font-size: 40px;
+  font-weight: bold;
+  color: #7c86c2;
+  text-align: center;
+  padding: 20px;}
+
+
+  .h2home {
+    font-size: 25px;
+    color: #7280c5;
+    text-align: center;
+    padding: 20px;}
