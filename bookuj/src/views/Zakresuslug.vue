@@ -58,19 +58,12 @@
       </div>
     </div>
   </div>
-
-  <!--
-<div class="main-container">
-    <div class="grid-wrapper1"></div>
-
-    <div class="grid-wrapper3">
-
-
-
-
-    </div>
-
-    <div class="image-container"></div>
-  </div>
-  -->
 </template>
+
+<style>
+.zakres1 {
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+</style>
