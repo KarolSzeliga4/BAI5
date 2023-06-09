@@ -67,7 +67,7 @@ const bookReservation = (app, connection) => {
 
       connection.query(
         "INSERT INTO `reservation` (`ID`, `time`, `patientID`, `doctorID`, `purpose`, `addInfo`) VALUES (NULL, ?, ?, ?, ?, ?)",
-        [selectedDate, userId, doctorId, purpose, `description`],
+        [selectedDate, userId, doctorId, purpose, `-`],
         function (error, results, fields) {
           if (error) throw error;
           else {

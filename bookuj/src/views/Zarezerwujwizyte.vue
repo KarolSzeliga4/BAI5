@@ -1,22 +1,30 @@
 <template>
   <h1>Zarezerwuj wizytę</h1>
-  <h6 v-if="!userState.accessToken.length" class="centered-text">Oh nie, nie jesteś zalogowany 😢</h6>
+  <h6 v-if="!userState.accessToken.length" class="centered-text">
+    Oh nie, nie jesteś zalogowany 😢
+  </h6>
   <div v-else>
     <div id="purposeChoice">
       <h3>Wybierz lekarza i usługę:</h3>
       <div class="doctors-container">
-        <div 
+        <div
           class="doctor-element"
           :class="{ active: data.doctorId === doctorsId['Dr Zbigniew Burski'] }"
-          v-on:click="() => doctorClick(doctorsId['Dr Zbigniew Burski'])">Dr Zbigniew Burski</div>
-        <div 
+          v-on:click="() => doctorClick(doctorsId['Dr Zbigniew Burski'])">
+          Dr Zbigniew Burski
+        </div>
+        <div
           class="doctor-element"
           :class="{ active: data.doctorId === doctorsId['Dr Zosia Burska'] }"
-          v-on:click="() => doctorClick(doctorsId['Dr Zosia Burska'])">Dr Zosia Burska</div>
-        <div 
+          v-on:click="() => doctorClick(doctorsId['Dr Zosia Burska'])">
+          Dr Zosia Burska
+        </div>
+        <div
           class="doctor-element"
           :class="{ active: data.doctorId === doctorsId['Dr Mirosław Halux'] }"
-          v-on:click="() => doctorClick(doctorsId['Dr Mirosław Halux'])">Dr Mirosław Halux</div>
+          v-on:click="() => doctorClick(doctorsId['Dr Mirosław Halux'])">
+          Dr Mirosław Halux
+        </div>
       </div>
       <div id="1" class="purpose-container">
         <div
@@ -49,7 +57,7 @@
         id="makeBooking"
         class="btn btn-primary btn-block mb-3 shadow"
         v-on:click="confirmPurposeClick"
-        :disabled="data.blocked">
+        :disabled="data.blocked2">
         Przejdź do wyboru daty
       </button>
     </div>
@@ -57,12 +65,10 @@
       <h3>Wybierz termin</h3>
       <div class="doctor-perpose-result-container">
         <h4>Wybrany lekarz i cel wizyty:</h4>
-        <div 
-          class="doctor-element" style="background-color: #14dfce;">
-          {{ doctorsNames[data.doctorId]}}
+        <div class="doctor-element" style="background-color: #14dfce">
+          {{ doctorsNames[data.doctorId] }}
         </div>
-        <div 
-          class="purpose-element" style="background-color: #14dfce;">
+        <div class="purpose-element" style="background-color: #14dfce">
           {{ data.purpose }}
         </div>
       </div>
@@ -75,7 +81,10 @@
         </Calendar>
         <div>
           <div class="day-container">
-            <h5>Dnia [{{data.selectedDate.toString().substring(0, 15)}}] dostępne są następujące terminy:</h5>
+            <h5>
+              Dnia [{{ data.selectedDate.toString().substring(0, 15) }}]
+              dostępne są następujące terminy:
+            </h5>
           </div>
           <div class="hours-container">
             <div
@@ -121,29 +130,46 @@ const attrs = ref([
 const calendar = ref(null);
 
 const data = reactive({
-  selectedDate: new Date(2023, 4, 8),
+  selectedDate: new Date(),
   selectedHour: 0,
   purpose: "purpose",
   doctorId: 0,
   hours: [],
   blocked: true,
+  blocked2: true,
 });
 
 const visitPurposes = {
-    "1": ["Bóle w klatce piersiowej", "Nadciśnienie Niewydolność", "Opieka po zawale", "Ocena ryzyka przed operacjami", "Diagnostyka"],
-    "2": ["Poradnia chorób wewnętrznych", "Diagnostyka stanu zdrowia", "Ocena stanu zdrowia", "Skierowanie do lekarza specjalisty"],
-    "3": ["Bóle chrząstno Stawowe", "Kwalifikacje do zabiegów", "Blokada/punkcja/nakłucie", "Diagnostyka"]
+  1: [
+    "Bóle w klatce piersiowej",
+    "Nadciśnienie Niewydolność",
+    "Opieka po zawale",
+    "Ocena ryzyka przed operacjami",
+    "Diagnostyka",
+  ],
+  2: [
+    "Poradnia chorób wewnętrznych",
+    "Diagnostyka stanu zdrowia",
+    "Ocena stanu zdrowia",
+    "Skierowanie do lekarza specjalisty",
+  ],
+  3: [
+    "Bóle chrząstno-stawowe",
+    "Kwalifikacje do zabiegów",
+    "Blokada/punkcja/nakłucie",
+    "Diagnostyka",
+  ],
 };
 const doctorsNames = {
-    1: "Dr Zbigniew Burski",
-    2: "Dr Zosia Burska",
-    3: "Dr Mirosław Halux"
+  1: "Dr Zbigniew Burski",
+  2: "Dr Zosia Burska",
+  3: "Dr Mirosław Halux",
 };
 
 const doctorsId = {
-    "Dr Zbigniew Burski": 1,
-    "Dr Zosia Burska": 2,
-    "Dr Mirosław Halux": 3
+  "Dr Zbigniew Burski": 1,
+  "Dr Zosia Burska": 2,
+  "Dr Mirosław Halux": 3,
 };
 
 onMounted(() => {
@@ -161,7 +187,7 @@ onUpdated(() => {
 const getHours = async (date, doctorId) => {
   const response = await makePostRequest("booking/availableHours", {
     date,
-    doctorId
+    doctorId,
   });
 
   data.blocked = !response.hours.length;
@@ -180,20 +206,22 @@ const hourClick = (hour) => {
 const purposeClick = (purpose, doctorId) => {
   data.purpose = purpose;
   data.doctorId = doctorId;
+  data.blocked2 = false;
 };
 
 const confirmPurposeClick = () => {
-  document.getElementById('dateChoice').style.display = "inline";
-  document.getElementById('purposeChoice').style.display = "none";
+  document.getElementById("dateChoice").style.display = "inline";
+  document.getElementById("purposeChoice").style.display = "none";
 };
 
 const doctorClick = (id) => {
-  if(data.doctorId != 0){
-  document.getElementById(data.doctorId).style.display = "none";
+  if (data.doctorId != 0) {
+    document.getElementById(data.doctorId).style.display = "none";
   }
   data.doctorId = id;
   document.getElementById(data.doctorId).style.display = "flex";
   data.purpose = "purpose";
+  data.blocked2 = true;
 };
 
 const book = async () => {
@@ -205,28 +233,36 @@ const book = async () => {
     doctorId: data.doctorId,
   });
 
+  //userState.user.bookings.data.push(booking);
+
+  userState.toast.show = true;
+  userState.toast.text = response.message;
+
   let booking = {
-    time: data.selectedDate.toString() + data.selectedHour,
-    name: doctorsNames[doctorId], 
+    time:
+      data.selectedDate.toString().substring(0, 15) +
+      " godz.:" +
+      data.selectedHour +
+      ":00:00",
+    name: doctorsNames[data.doctorId],
     purpose: data.purpose,
-    addInfo: "no description",
+    addInfo: "-",
   };
 
-  console.log(userState.user.bookings.data.push(booking));
+  userState.user.bookings.data.push(booking);
 
-  getHours(data.selectedDate.toString(), doctorId);
+  getHours(data.selectedDate.toString(), data.doctorId);
 };
 </script>
 
 <style>
-
 .container {
   display: flex;
   flex-direction: row;
   max-width: unset;
 }
 
-.doctors-container{
+.doctors-container {
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
@@ -234,7 +270,7 @@ const book = async () => {
   padding: 20px;
 }
 
-.purpose-container{
+.purpose-container {
   display: none;
   flex-wrap: wrap;
   justify-content: left;
@@ -243,7 +279,7 @@ const book = async () => {
   padding: 20px;
 }
 
-.day-container{
+.day-container {
   display: flex;
   justify-content: left;
   padding: 10px 30px;
@@ -308,7 +344,6 @@ const book = async () => {
   font-weight: bolder;
 }
 
-
 .doctor-element {
   font-size: 20px;
   background-color: #b2bec2;
@@ -332,12 +367,11 @@ const book = async () => {
   font-weight: bolder;
 }
 
-.doctor-perpose-result-container{
+.doctor-perpose-result-container {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   min-height: 50px;
   padding: 30px;
 }
-
 </style>
