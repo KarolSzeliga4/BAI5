@@ -344,15 +344,25 @@ padding-left: 210px;
 }
 
 .h1home {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   color: #7c86c2;
   text-align: center;
-  padding: 20px;}
+  padding: 10px;}
 
 
-  .h2home {
-    font-size: 25px;
-    color: #7280c5;
-    text-align: center;
-    padding: 20px;}
+.h2home {
+  font-size: 20px;
+  color: #7280c5;
+  text-align: center;
+  padding: 0px;}
+
+.ikonka1{
+  box-sizing: border-box;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 43%;
+  top: 145px;
+  border-radius: 50%;
+    }
