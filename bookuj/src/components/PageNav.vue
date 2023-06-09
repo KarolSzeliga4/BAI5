@@ -24,9 +24,9 @@
               <button>Kontakt</button>
             </router-link>
           </div>
-          <div class="col-auto">
-            <router-link to="/Zalogujsie">
-              <button>Zaloguj się</button>
+          <div v-if="userState.accessToken.length" class="col-auto">
+            <router-link to="/Bookingi">
+              <button>Twoje wizyty</button>
             </router-link>
           </div>
           <div class="col-auto">
@@ -34,8 +34,29 @@
               <button>Zarezerwuj wizytę</button>
             </router-link>
           </div>
+          <div v-if="!userState.accessToken.length" class="col-auto">
+            <router-link to="/Zalogujsie">
+              <button>Zaloguj się</button>
+            </router-link>
+          </div>
+          <div v-else class="col-auto">
+            <router-link to="/">
+              <button v-on:click="logout" >Wyloguj się</button>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 </template>
+<script setup>
+import userState from "../state/userState";
+
+async function logout() {
+  try {
+    userState.accessToken = 0;
+  } catch (error) {
+    console.log("Error during logout :(");
+  }
+}
+</script>
