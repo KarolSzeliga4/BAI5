@@ -177,7 +177,7 @@ import router from "../Router";
 
 onUpdated(() => {
   if (!!userState.accessToken) {
-    router.push({ path: "/Home" });
+    router.push({ path: "/" });
   }
 });
 

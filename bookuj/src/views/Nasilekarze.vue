@@ -89,4 +89,9 @@
   width: 50%;
   margin-bottom: 50px;
 }
+
+.drClooney,
+.drZosia {
+  height: 100%;
+}
 </style>
