@@ -1,40 +1,76 @@
 <template>
-   <div class="main-container">
-      
-
-      <div class="grid-wrapper1"></div>
-    
-        <div class="grid-wrapper3">
-                <div class="zakres1 uslug"><br><br><br><br><br><strong>Kardiologia</strong><br><br><b>Konsultacje lekarskie:</b><br><br>
-                            Bóle w klatce piersiowej <br>Nadciśnienie Niewydolność <br>
-                            Opieka po zawale <br>
-                            Ocena ryzyka przed operacjami <br><br>
-                            <b>Diagnostyka:</b><br><br>Echokardiografia <br>EKG <br>Holter <br>Próba wysiłkowa</div>
-                     
-                <div class="zakres1 uslug"><br><br><br><br><strong>Ortopedia</strong><br><br> <b>Konsultacje lekarskie:</b><br><br> 
-                    Bóle chrząstno Stawowe<br>Kwalifikacje do zabiegów <br>Blokada/punkcja/nakłucie <br><br>
-                    <b>Diagnostyka:</b> <br>
-                    <br>USG 
-                    <br>Zabiegi małoinwazyjne 
-                    <br>Zastosowanie osocza 
-                    <br>Iniekcja kwasu hialuronowego <br>Usunięcie zmiany skórnej do 1,5 cm </div>
-                <div class="zakres1 uslug"><br><br><br><br><strong>Internista</strong> <br><br>
-                    <b>Konsultacje lekarskie:</b><br><br>
-                    Poradnia chorób wewnętrznych <br>
-                    Diagnostyka stanu zdrowia <br>
-                    Ocena stanu zdrowia <br>
-                    Skierowanie do lekarza specjalisty<br><br>
-                    <b>Diagnostyka:</b> <br>
-                    <br>USG 
-                    <br>EKG
-                    <br>Morfologia</div>
-         </div>    
-         
-         <div class="image-container">
-           
-        </div>
-               
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="zakres1 uslug">
+        <p><strong>Kardiologia</strong></p>
+        <p><b>Konsultacje lekarskie:</b></p>
+        <ul>
+          <li>Bóle w klatce piersiowej</li>
+          <li>Nadciśnienie</li>
+          <li>Niewydolność</li>
+          <li>Opieka po zawale</li>
+          <li>Ocena ryzyka przed operacjami</li>
+        </ul>
+        <p><b>Diagnostyka:</b></p>
+        <ul>
+          <li>Echokardiografia</li>
+          <li>EKG</li>
+          <li>Holter</li>
+          <li>Próba wysiłkowa</li>
+        </ul>
+      </div>
     </div>
-   
+    <div class="col-sm-4">
+      <div class="zakres1 uslug">
+        <p><strong>Ortopedia</strong></p>
+        <p><b>Konsultacje lekarskie:</b></p>
+        <ul>
+          <li>Bóle chrząstno-stawowe</li>
+          <li>Kwalifikacje do zabiegów</li>
+          <li>Blokada/punkcja/nakłucie</li>
+        </ul>
+        <p><b>Diagnostyka:</b></p>
+        <ul>
+          <li>USG</li>
+          <li>Zabiegi małoinwazyjne</li>
+          <li>Zastosowanie osocza</li>
+          <li>Iniekcja kwasu hialuronowego</li>
+          <li>Usunięcie zmiany skórnej do 1,5 cm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="zakres1 uslug">
+        <p><strong>Internista</strong></p>
+        <p><b>Konsultacje lekarskie:</b></p>
+        <ul>
+          <li>Poradnia chorób wewnętrznych</li>
+          <li>Diagnostyka stanu zdrowia</li>
+          <li>Ocena stanu zdrowia</li>
+          <li>Skierowanie do lekarza specjalisty</li>
+        </ul>
+        <p><b>Diagnostyka:</b></p>
+        <ul>
+          <li>USG</li>
+          <li>EKG</li>
+          <li>Morfologia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  </template>
+  <!--
+<div class="main-container">
+    <div class="grid-wrapper1"></div>
+
+    <div class="grid-wrapper3">
+
+
+
+
+    </div>
+
+    <div class="image-container"></div>
+  </div>
+  -->
+</template>
