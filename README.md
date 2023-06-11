@@ -1,4 +1,4 @@
-# BAI5
+# Basic Medical Clinic
 
 Application for the PATIENT so that he can sign up for a visit to the doctor's office.
 Website content and functions:
